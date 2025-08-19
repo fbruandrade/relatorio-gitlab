@@ -1,0 +1,325 @@
+[
+  {
+    "path": "devops/samples/node",
+    "gitlab1": {
+      "id": "17",
+      "name": "Node",
+      "group": "devops/samples",
+      "path": "devops/samples/node",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/node",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "17",
+      "name": "Node",
+      "group": "devops/samples",
+      "path": "devops/samples/node",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/node",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "iac/terraform/terraform-aws-gateway",
+    "gitlab1": {
+      "id": "16",
+      "name": "Terraform AWS Gateway",
+      "group": "iac/terraform",
+      "path": "iac/terraform/terraform-aws-gateway",
+      "web_url": "https://gitlab.fandrade.com.br/iac/terraform/terraform-aws-gateway",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "16",
+      "name": "Terraform AWS Gateway",
+      "group": "iac/terraform",
+      "path": "iac/terraform/terraform-aws-gateway",
+      "web_url": "https://gitlab.fandrade.com.br/iac/terraform/terraform-aws-gateway",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "devops/base-images",
+    "gitlab1": {
+      "id": "15",
+      "name": "Base Images",
+      "group": "devops",
+      "path": "devops/base-images",
+      "web_url": "https://gitlab.fandrade.com.br/devops/base-images",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "15",
+      "name": "Base Images",
+      "group": "devops",
+      "path": "devops/base-images",
+      "web_url": "https://gitlab.fandrade.com.br/devops/base-images",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "devops/skopeo",
+    "gitlab1": {
+      "id": "14",
+      "name": "Skopeo",
+      "group": "devops",
+      "path": "devops/skopeo",
+      "web_url": "https://gitlab.fandrade.com.br/devops/skopeo",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "14",
+      "name": "Skopeo",
+      "group": "devops",
+      "path": "devops/skopeo",
+      "web_url": "https://gitlab.fandrade.com.br/devops/skopeo",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "hubstack/hubstack",
+    "gitlab1": {
+      "id": "13",
+      "name": "HubStack",
+      "group": "hubstack",
+      "path": "hubstack/hubstack",
+      "web_url": "https://gitlab.fandrade.com.br/hubstack/hubstack",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "13",
+      "name": "HubStack",
+      "group": "hubstack",
+      "path": "hubstack/hubstack",
+      "web_url": "https://gitlab.fandrade.com.br/hubstack/hubstack",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "hubstack/my-next-app",
+    "gitlab1": {
+      "id": "12",
+      "name": "My Next App",
+      "group": "hubstack",
+      "path": "hubstack/my-next-app",
+      "web_url": "https://gitlab.fandrade.com.br/hubstack/my-next-app",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "12",
+      "name": "My Next App",
+      "group": "hubstack",
+      "path": "hubstack/my-next-app",
+      "web_url": "https://gitlab.fandrade.com.br/hubstack/my-next-app",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "devops/base-repo",
+    "gitlab1": {
+      "id": "11",
+      "name": "base-repo",
+      "group": "devops",
+      "path": "devops/base-repo",
+      "web_url": "https://gitlab.fandrade.com.br/devops/base-repo",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "11",
+      "name": "base-repo",
+      "group": "devops",
+      "path": "devops/base-repo",
+      "web_url": "https://gitlab.fandrade.com.br/devops/base-repo",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "devops/samples/aws-lambda/lib-set-others-python313",
+    "gitlab1": {
+      "id": "10",
+      "name": "lib-set-others-python313",
+      "group": "devops/samples/aws-lambda",
+      "path": "devops/samples/aws-lambda/lib-set-others-python313",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/aws-lambda/lib-set-others-python313",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "10",
+      "name": "lib-set-others-python313",
+      "group": "devops/samples/aws-lambda",
+      "path": "devops/samples/aws-lambda/lib-set-others-python313",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/aws-lambda/lib-set-others-python313",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "devops/samples/aws-lambda/lib-pandas-python313",
+    "gitlab1": {
+      "id": "9",
+      "name": "lib-pandas-python313",
+      "group": "devops/samples/aws-lambda",
+      "path": "devops/samples/aws-lambda/lib-pandas-python313",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/aws-lambda/lib-pandas-python313",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "9",
+      "name": "lib-pandas-python313",
+      "group": "devops/samples/aws-lambda",
+      "path": "devops/samples/aws-lambda/lib-pandas-python313",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/aws-lambda/lib-pandas-python313",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "devops/samples/aws-lambda/apl-lambda-python313-layers-jks",
+    "gitlab1": {
+      "id": "8",
+      "name": "apl-lambda-python313-layers-jks",
+      "group": "devops/samples/aws-lambda",
+      "path": "devops/samples/aws-lambda/apl-lambda-python313-layers-jks",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/aws-lambda/apl-lambda-python313-layers-jks",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "8",
+      "name": "apl-lambda-python313-layers-jks",
+      "group": "devops/samples/aws-lambda",
+      "path": "devops/samples/aws-lambda/apl-lambda-python313-layers-jks",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/aws-lambda/apl-lambda-python313-layers-jks",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "devops/samples/aws-lambda/apl-lambda-python313-jks",
+    "gitlab1": {
+      "id": "7",
+      "name": "apl-lambda-python313-jks",
+      "group": "devops/samples/aws-lambda",
+      "path": "devops/samples/aws-lambda/apl-lambda-python313-jks",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/aws-lambda/apl-lambda-python313-jks",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "7",
+      "name": "apl-lambda-python313-jks",
+      "group": "devops/samples/aws-lambda",
+      "path": "devops/samples/aws-lambda/apl-lambda-python313-jks",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/aws-lambda/apl-lambda-python313-jks",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "devops/samples/azure-functions/apl-function-jks",
+    "gitlab1": {
+      "id": "6",
+      "name": "apl-function-jks",
+      "group": "devops/samples/azure-functions",
+      "path": "devops/samples/azure-functions/apl-function-jks",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/azure-functions/apl-function-jks",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "6",
+      "name": "apl-function-jks",
+      "group": "devops/samples/azure-functions",
+      "path": "devops/samples/azure-functions/apl-function-jks",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/azure-functions/apl-function-jks",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "iac/azure/apim",
+    "gitlab1": {
+      "id": "5",
+      "name": "APIM",
+      "group": "iac/azure",
+      "path": "iac/azure/apim",
+      "web_url": "https://gitlab.fandrade.com.br/iac/azure/apim",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "5",
+      "name": "APIM",
+      "group": "iac/azure",
+      "path": "iac/azure/apim",
+      "web_url": "https://gitlab.fandrade.com.br/iac/azure/apim",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "iac/terraform/terraform-aws-vpc",
+    "gitlab1": {
+      "id": "4",
+      "name": "Terraform AWS VPC",
+      "group": "iac/terraform",
+      "path": "iac/terraform/terraform-aws-vpc",
+      "web_url": "https://gitlab.fandrade.com.br/iac/terraform/terraform-aws-vpc",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "4",
+      "name": "Terraform AWS VPC",
+      "group": "iac/terraform",
+      "path": "iac/terraform/terraform-aws-vpc",
+      "web_url": "https://gitlab.fandrade.com.br/iac/terraform/terraform-aws-vpc",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "iac/terraform/terraform-aws-eks",
+    "gitlab1": {
+      "id": "3",
+      "name": "Terraform AWS EKS",
+      "group": "iac/terraform",
+      "path": "iac/terraform/terraform-aws-eks",
+      "web_url": "https://gitlab.fandrade.com.br/iac/terraform/terraform-aws-eks",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "3",
+      "name": "Terraform AWS EKS",
+      "group": "iac/terraform",
+      "path": "iac/terraform/terraform-aws-eks",
+      "web_url": "https://gitlab.fandrade.com.br/iac/terraform/terraform-aws-eks",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "devops/samples/aws-lambda/apl-lambda-hello-jks",
+    "gitlab1": {
+      "id": "2",
+      "name": "apl-lambda-hello-jks",
+      "group": "devops/samples/aws-lambda",
+      "path": "devops/samples/aws-lambda/apl-lambda-hello-jks",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/aws-lambda/apl-lambda-hello-jks",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "2",
+      "name": "apl-lambda-hello-jks",
+      "group": "devops/samples/aws-lambda",
+      "path": "devops/samples/aws-lambda/apl-lambda-hello-jks",
+      "web_url": "https://gitlab.fandrade.com.br/devops/samples/aws-lambda/apl-lambda-hello-jks",
+      "visibility": "private"
+    }
+  },
+  {
+    "path": "iac/terraform/terraform-aws-lambda",
+    "gitlab1": {
+      "id": "1",
+      "name": "Terraform AWS Lambda",
+      "group": "iac/terraform",
+      "path": "iac/terraform/terraform-aws-lambda",
+      "web_url": "https://gitlab.fandrade.com.br/iac/terraform/terraform-aws-lambda",
+      "visibility": "private"
+    },
+    "gitlab2": {
+      "id": "1",
+      "name": "Terraform AWS Lambda",
+      "group": "iac/terraform",
+      "path": "iac/terraform/terraform-aws-lambda",
+      "web_url": "https://gitlab.fandrade.com.br/iac/terraform/terraform-aws-lambda",
+      "visibility": "private"
+    }
+  }
+]

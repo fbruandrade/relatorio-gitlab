@@ -1,0 +1,18 @@
+id,name,group,path,web_url,visibility
+17,Node,devops/samples,devops/samples/node,https://gitlab.fandrade.com.br/devops/samples/node,private
+16,Terraform AWS Gateway,iac/terraform,iac/terraform/terraform-aws-gateway,https://gitlab.fandrade.com.br/iac/terraform/terraform-aws-gateway,private
+15,Base Images,devops,devops/base-images,https://gitlab.fandrade.com.br/devops/base-images,private
+14,Skopeo,devops,devops/skopeo,https://gitlab.fandrade.com.br/devops/skopeo,private
+13,HubStack,hubstack,hubstack/hubstack,https://gitlab.fandrade.com.br/hubstack/hubstack,private
+12,My Next App,hubstack,hubstack/my-next-app,https://gitlab.fandrade.com.br/hubstack/my-next-app,private
+11,base-repo,devops,devops/base-repo,https://gitlab.fandrade.com.br/devops/base-repo,private
+10,lib-set-others-python313,devops/samples/aws-lambda,devops/samples/aws-lambda/lib-set-others-python313,https://gitlab.fandrade.com.br/devops/samples/aws-lambda/lib-set-others-python313,private
+9,lib-pandas-python313,devops/samples/aws-lambda,devops/samples/aws-lambda/lib-pandas-python313,https://gitlab.fandrade.com.br/devops/samples/aws-lambda/lib-pandas-python313,private
+8,apl-lambda-python313-layers-jks,devops/samples/aws-lambda,devops/samples/aws-lambda/apl-lambda-python313-layers-jks,https://gitlab.fandrade.com.br/devops/samples/aws-lambda/apl-lambda-python313-layers-jks,private
+7,apl-lambda-python313-jks,devops/samples/aws-lambda,devops/samples/aws-lambda/apl-lambda-python313-jks,https://gitlab.fandrade.com.br/devops/samples/aws-lambda/apl-lambda-python313-jks,private
+6,apl-function-jks,devops/samples/azure-functions,devops/samples/azure-functions/apl-function-jks,https://gitlab.fandrade.com.br/devops/samples/azure-functions/apl-function-jks,private
+5,APIM,iac/azure,iac/azure/apim,https://gitlab.fandrade.com.br/iac/azure/apim,private
+4,Terraform AWS VPC,iac/terraform,iac/terraform/terraform-aws-vpc,https://gitlab.fandrade.com.br/iac/terraform/terraform-aws-vpc,private
+3,Terraform AWS EKS,iac/terraform,iac/terraform/terraform-aws-eks,https://gitlab.fandrade.com.br/iac/terraform/terraform-aws-eks,private
+2,apl-lambda-hello-jks,devops/samples/aws-lambda,devops/samples/aws-lambda/apl-lambda-hello-jks,https://gitlab.fandrade.com.br/devops/samples/aws-lambda/apl-lambda-hello-jks,private
+1,Terraform AWS Lambda,iac/terraform,iac/terraform/terraform-aws-lambda,https://gitlab.fandrade.com.br/iac/terraform/terraform-aws-lambda,private
