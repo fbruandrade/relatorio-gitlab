@@ -5,16 +5,18 @@ GitLab repositories lister and comparer for two instances.
 Requires: python-gitlab (pip install python-gitlab)
 
 Usage examples:
-  # Save combined report to JSON file
+  # Save combined report to JSON file (with pagination logs to stderr)
   python gitlab_compare.py \
     --url1 https://gitlab.company-a.com --token1 $GITLAB_TOKEN_A \
     --url2 https://gitlab.company-b.com --token2 $GITLAB_TOKEN_B \
     --out-json reports/combined.json
 
-  # Save combined report to CSV file
+  # Save combined report to CSV file with custom pagination and retry settings, logging to a file
   python gitlab_compare.py \
     --url1 https://gitlab.company-a.com --token1 $GITLAB_TOKEN_A \
     --url2 https://gitlab.company-b.com --token2 $GITLAB_TOKEN_B \
+    --per-page 100 --max-retries 6 --retry-backoff 2.0 \
+    --log-file reports/fetch.log \
     --out-csv reports/combined.csv
 
   # Generate separate files for each GitLab and for the common projects
@@ -33,6 +35,9 @@ Outputs are only written to files:
   - <prefix>_gitlab2.json/.csv: all projects from GitLab 2
   - <prefix>_common.json/.csv: projects present in both GitLabs (matched by path)
 
+Pagination & resilience:
+- The tool explicitly paginates through all projects (default per-page=100), logs each page, and retries transient errors (500/502/503/504/429) with exponential backoff.
+
 Each project entry includes: name, group (namespace), path (path_with_namespace), web_url, id, visibility
 """
 from __future__ import annotations
@@ -43,6 +48,9 @@ import json
 import os
 import sys
 from typing import Dict, Iterable, List, Tuple, Optional
+import time
+from datetime import datetime
+import urllib3
 
 try:
     import gitlab  # type: ignore
@@ -53,22 +61,13 @@ except Exception as e:
 
 def connect(url: str, token: str, verify_ssl: bool = True) -> "gitlab.Gitlab":
     gl = gitlab.Gitlab(url=url, private_token=token, ssl_verify=verify_ssl, per_page=100)
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     # Validate connection
     gl.auth()  # will raise if token invalid
     return gl
 
 
-def iter_all_projects(gl: "gitlab.Gitlab") -> Iterable["gitlab.v4.objects.Project"]:
-    """Iterate over all accessible projects for the token.
-
-    Uses iterator=True for memory efficiency and pagination.
-    """
-    try:
-        # Prefer iterator to avoid loading everything at once
-        return gl.projects.list(iterator=True, as_list=False, per_page=100)
-    except TypeError:
-        # Fallback for older python-gitlab versions
-        return gl.projects.list(all=True, per_page=100)  # type: ignore
+# Nota: a paginação explícita é implementada em fetch_projects com logs e retentativas.
 
 
 def normalize_project(p) -> Dict[str, str]:
@@ -96,11 +95,82 @@ def normalize_project(p) -> Dict[str, str]:
     }
 
 
-def fetch_projects(url: str, token: str, verify_ssl: bool) -> List[Dict[str, str]]:
+class _Logger:
+    def __init__(self, log_file: Optional[str] = None):
+        self.log_file = log_file
+        if self.log_file:
+            dir_name = os.path.dirname(self.log_file)
+            if dir_name:
+                os.makedirs(dir_name, exist_ok=True)
+
+    def log(self, msg: str) -> None:
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        line = f"[{timestamp}] {msg}\n"
+        # stderr for immediate feedback
+        try:
+            sys.stderr.write(line)
+            sys.stderr.flush()
+        except Exception:
+            pass
+        # optional file
+        if self.log_file:
+            try:
+                with open(self.log_file, 'a', encoding='utf-8') as f:
+                    f.write(line)
+            except Exception:
+                pass
+
+
+def fetch_projects(url: str, token: str, verify_ssl: bool,
+                   per_page: int = 100,
+                   max_retries: int = 5,
+                   retry_backoff: float = 1.5,
+                   logger: Optional[_Logger] = None) -> List[Dict[str, str]]:
     gl = connect(url, token, verify_ssl)
-    projects = []
-    for p in iter_all_projects(gl):
-        projects.append(normalize_project(p))
+    projects: List[Dict[str, str]] = []
+
+    # Cap per_page to 100 (GitLab API maximum)
+    if per_page > 100:
+        per_page = 100
+    if per_page <= 0:
+        per_page = 100
+
+    page = 1
+    total = 0
+    while True:
+        attempt = 0
+        while True:
+            try:
+                if logger:
+                    logger.log(f"Solicitando página {page} (per_page={per_page})")
+                page_items = gl.projects.list(page=page, per_page=per_page)
+                break
+            except Exception as e:
+                # Try to inspect python-gitlab error codes
+                response_code = getattr(e, 'response_code', None)
+                transient = response_code in {429, 500, 502, 503, 504}
+                if not transient or attempt >= max_retries:
+                    if logger:
+                        logger.log(f"Falha ao obter página {page}: {e} (código={response_code}). Não será tentado novamente.")
+                    raise
+                attempt += 1
+                sleep_for = retry_backoff ** attempt
+                if logger:
+                    logger.log(f"Erro transitório (código={response_code}) ao obter página {page}. Tentativa {attempt}/{max_retries}. Aguardando {sleep_for:.1f}s...")
+                time.sleep(sleep_for)
+
+        if not page_items:
+            if logger:
+                logger.log(f"Página {page} vazia. Concluído. Total de projetos: {total}")
+            break
+
+        normalized = [normalize_project(p) for p in page_items]
+        projects.extend(normalized)
+        total += len(normalized)
+        if logger:
+            logger.log(f"Página {page} retornou {len(normalized)} projetos. Acumulado: {total}")
+        page += 1
+
     return projects
 
 
@@ -217,6 +287,11 @@ def parse_args(argv: List[str]) -> argparse.Namespace:
     parser.add_argument('--url2', required=False, default=os.getenv('GITLAB_URL_2'), help='URL do GitLab 2 (ou defina GITLAB_URL_2)')
     parser.add_argument('--token2', required=False, default=os.getenv('GITLAB_TOKEN_2'), help='Token privado para GitLab 2 (ou defina GITLAB_TOKEN_2)')
     parser.add_argument('--no-verify-ssl', action='store_true', help='Desabilita verificação SSL (use com cautela)')
+    # Pagination & resilience options
+    parser.add_argument('--per-page', type=int, default=100, help='Tamanho da página nas listagens (máximo 100)')
+    parser.add_argument('--max-retries', type=int, default=5, help='Número máximo de tentativas para erros 5xx/429')
+    parser.add_argument('--retry-backoff', type=float, default=1.5, help='Fator de backoff exponencial entre tentativas')
+    parser.add_argument('--log-file', required=False, help='Arquivo de log para registrar paginação e tentativas (stderr por padrão)')
     # Combined report file outputs (choose one)
     parser.add_argument('--out-json', required=False, help='Arquivo para salvar o relatório combinado em JSON')
     parser.add_argument('--out-csv', required=False, help='Arquivo para salvar o relatório combinado em CSV')
@@ -247,9 +322,19 @@ def main(argv: List[str]) -> int:
     args = parse_args(argv)
     verify_ssl = not args.no_verify_ssl
 
+    logger = _Logger(args.log_file)
+
     try:
-        list1 = fetch_projects(args.url1, args.token1, verify_ssl)
-        list2 = fetch_projects(args.url2, args.token2, verify_ssl)
+        list1 = fetch_projects(
+            args.url1, args.token1, verify_ssl,
+            per_page=args.per_page, max_retries=args.max_retries,
+            retry_backoff=args.retry_backoff, logger=logger,
+        )
+        list2 = fetch_projects(
+            args.url2, args.token2, verify_ssl,
+            per_page=args.per_page, max_retries=args.max_retries,
+            retry_backoff=args.retry_backoff, logger=logger,
+        )
     except gitlab.GitlabAuthenticationError as e:  # type: ignore
         print(f"Erro de autenticação: {e}", file=sys.stderr)
         return 2
